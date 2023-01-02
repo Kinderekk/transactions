@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+// height should be calculated to remove height of header and footer
+#root {
+  height: calc(100% - 150px);
+  width: 100%;
+}

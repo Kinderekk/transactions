@@ -30,17 +30,29 @@ function Transactions() {
 
   return (
     <div className="page-container">
-      {!isError && !isLoading && transactions && (
-        <div>Got it</div>
+      {!isError && (
+        <div className="page-items-container">
+          <div className="upper-items">
+            <div className="left-box">
+              balance && filter
+            </div>
+            <div className="right-box">
+              transaction form
+            </div>
+          </div>
+          <div className="transactions-list">
+            transactions list
+          </div>
+        </div>
       )}
       {isError && (
         <div className="error">There was an error when getting informations from server</div>
       )}
-      {isLoading && (
+      {/* {isLoading && (
         <div className="loading-container">
           <div className="loader" />
         </div>
-      )}
+      )} */}
     </div>
   );
 }
