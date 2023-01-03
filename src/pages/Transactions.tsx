@@ -3,7 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../components/Loader/Loader';
 import Error from '../components/Error/Error';
 import TransactionItem from '../components/TransactionItem/TransactionItem';
-import { getTransactions } from '../services/transactions';
+import { addTransaction, getTransactions } from '../services/transactions';
 import { Transaction } from '../types/transaction';
 import Filter from '../components/Filter/Filter';
 import TransactionForm from '../components/TransactionForm/TransactionForm';
@@ -17,6 +17,7 @@ function Transactions() {
   const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [newTransactionAdded, setNewTransactionAdded] = useState<boolean>(false);
 
   function filterTransactions(filterText: string) {
     if (transactions) {
@@ -59,10 +60,21 @@ function Transactions() {
     setTransactionsToShow((prevState) => prevState ? prevState.concat(slicedArray) : slicedArray);
   }
 
+  async function handleAddingTransaction(data: Transaction) {
+    const status = await addTransaction(data);
+    if (status === 201) {
+      setNewTransactionAdded(true);
+    }
+  }
+
   useEffect(() => {
     // Fixing error with double useEffect call
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
+
+    if (newTransactionAdded) {
+      setNewTransactionAdded(false);
+    }
 
     setIsLoading(true);
     getTransactions()
@@ -74,11 +86,10 @@ function Transactions() {
         setIsError(true);
       })
       .finally(() => {
+        dataFetchedRef.current = false;
         setIsLoading(false);
       })
-  }, [])
-
-  console.log(transactions);
+  }, [newTransactionAdded]);
 
   return (
     <div className="page-container">
@@ -86,7 +97,8 @@ function Transactions() {
         <div className="upper-items">
           <div className="left-box">
             <div className="left-box-balance">
-              balance
+              <div className="left-box-balance-title">Balance address</div>
+              <div className="left-box-balance-address">PL10101582140321620000000000</div>
             </div>
             <div className="left-box-empty-space" />
             <div className="left-box-filter">
@@ -94,7 +106,7 @@ function Transactions() {
             </div>
           </div>
           <div className="right-box">
-            <TransactionForm />
+            <TransactionForm onTransactionAdd={(data: Transaction) => handleAddingTransaction(data)} />
           </div>
         </div>
         <div className="transactions-list-container">
@@ -112,6 +124,9 @@ function Transactions() {
                   {transactionsToShow.map((transaction) => (
                     <TransactionItem key={transaction.id} transaction={transaction} onTransactionDelete={(id) => handleTransactionDelete(id)} />
                   ))}
+                  {transactionsToShow.length === 0 && (
+                    <div className="transaction-list-empty-array">There is nothing to show</div>
+                  )}
                 </InfiniteScroll>
               </div>
             )
