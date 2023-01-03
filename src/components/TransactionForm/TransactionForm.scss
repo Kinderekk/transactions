@@ -139,3 +139,16 @@
     color: red;
   }
 }
+
+@media only screen and (max-width: 450px) {
+  input, textarea {
+    font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .transaction-form-button-container {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}

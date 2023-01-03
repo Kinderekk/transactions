@@ -19,7 +19,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
 
   function clearInputs() {
     setValue('amount', '');
-    setValue('accountNumber', '');
+    setValue('account', '');
     setValue('address', '');
     setValue('beneficiary', '');
     setValue('description', '');
@@ -42,8 +42,8 @@ function TransactionForm({ onTransactionAdd }: Props) {
               'titleError': errors.amount
             })}>Account number</div>
             <input className={className('', {
-              'inputError': errors.accountNumber
-            })} id="accountNumber" type="number" {...register("accountNumber", { required: true })} />
+              'inputError': errors.account
+            })} id="accountNumber" type="number" {...register("account", { required: true })} />
           </div>
         </div>
         <div className="transaction-form-inputs-container-right">
