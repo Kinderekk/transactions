@@ -13,7 +13,8 @@ function Filter({ onChange }: Props) {
 
   return (
     <div className="filter-container">
-      <input 
+      <input
+        data-testid="filter-input"
         placeholder='Filter by beneficiary'
         onChange={(e) => debouncedSearch(e.target.value)}
       />

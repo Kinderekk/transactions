@@ -13,6 +13,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
     const tempData = Object.assign({}, data);
     tempData.id = Math.random();
     tempData.date = new Date().toJSON();
+    tempData.amount = parseInt(tempData.amount);
     onTransactionAdd(tempData as Transaction);
     clearInputs();
   }
@@ -33,7 +34,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             <div className={className('transaction-form-inputs-container-left-amount-text',  {
               'titleError': errors.amount
             })}>Amount</div>
-            <input className={className('', {
+            <input data-testid="transaction-form-amount" className={className('', {
               'inputError': errors.amount
             })} placeholder="e.g. 24" type="number" {...register("amount", { required: true, min: 1 })} />
           </div>
@@ -41,7 +42,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             <div className={className("transaction-form-inputs-container-left-account-number-text",  {
               'titleError': errors.amount
             })}>Account number</div>
-            <input className={className('', {
+            <input data-testid="transaction-form-account" className={className('', {
               'inputError': errors.account
             })} placeholder="e.g. 1010158214032162000" id="accountNumber" type="number" {...register("account", { required: true })} />
           </div>
@@ -51,7 +52,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             <div className={className("transaction-form-inputs-container-right-address-text",  {
               'titleError': errors.amount
             })}>Address</div>
-            <input className={className('', {
+            <input data-testid="transaction-form-address" className={className('', {
               'inputError': errors.address
             })} placeholder="e.g. St. Johns Road West Dublin 8" {...register("address", { required: true })} />
           </div>
@@ -59,7 +60,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             <div className={className("transaction-form-inputs-container-right-beneficiary-text",  {
               'titleError': errors.beneficiary
             })}>Beneficiary</div>
-            <input className={className('', {
+            <input data-testid="transaction-form-beneficiary" className={className('', {
               'inputError': errors.beneficiary
             })} placeholder="e.g. Bill Billy" {...register("beneficiary", { required: true })} />
           </div>
@@ -70,13 +71,13 @@ function TransactionForm({ onTransactionAdd }: Props) {
           <div className={className("transaction-form-description-text",  {
             'titleError': errors.description
           })}>Description</div>
-          <textarea placeholder="e.g. Payment for invoice" className={className('', {
+          <textarea data-testid="transaction-form-description" placeholder="e.g. Payment for invoice" className={className('', {
             'inputError': errors.description
           })} {...register("description", { required: true })} />
         </div>
       </div>
       <div className="transaction-form-button-container">
-        <button>
+        <button data-testid="transaction-form-button">
           Send transaction
         </button>
       </div>
