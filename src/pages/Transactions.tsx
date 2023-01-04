@@ -56,13 +56,18 @@ function Transactions() {
   function getMoreTransactions(transactions: Transaction[]) {
     const maxIndex = loaderCounter.current + 20 > transactions.length ? transactions.length : loaderCounter.current + 20;
     const slicedArray = transactions.slice(loaderCounter.current, maxIndex);
+    if (loaderCounter.current === 0) {
+      setTransactionsToShow(slicedArray);
+    } else {
+      setTransactionsToShow((prevState) => prevState ? prevState.concat(slicedArray) : slicedArray);
+    }
     loaderCounter.current += 20;
-    setTransactionsToShow((prevState) => prevState ? prevState.concat(slicedArray) : slicedArray);
   }
 
   async function handleAddingTransaction(data: Transaction) {
     const status = await addTransaction(data);
     if (status === 201) {
+      loaderCounter.current = 0;
       setNewTransactionAdded(true);
     }
   }

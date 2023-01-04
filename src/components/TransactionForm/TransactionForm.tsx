@@ -35,7 +35,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             })}>Amount</div>
             <input className={className('', {
               'inputError': errors.amount
-            })} type="number" {...register("amount", { required: true, min: 1 })} />
+            })} placeholder="e.g. 24" type="number" {...register("amount", { required: true, min: 1 })} />
           </div>
           <div className="transaction-form-inputs-container-left-account-number">
             <div className={className("transaction-form-inputs-container-left-account-number-text",  {
@@ -43,7 +43,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             })}>Account number</div>
             <input className={className('', {
               'inputError': errors.account
-            })} id="accountNumber" type="number" {...register("account", { required: true })} />
+            })} placeholder="e.g. 1010158214032162000" id="accountNumber" type="number" {...register("account", { required: true })} />
           </div>
         </div>
         <div className="transaction-form-inputs-container-right">
@@ -53,7 +53,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             })}>Address</div>
             <input className={className('', {
               'inputError': errors.address
-            })} {...register("address", { required: true })} />
+            })} placeholder="e.g. St. Johns Road West Dublin 8" {...register("address", { required: true })} />
           </div>
           <div className="transaction-form-inputs-container-right-beneficiary">
             <div className={className("transaction-form-inputs-container-right-beneficiary-text",  {
@@ -61,7 +61,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
             })}>Beneficiary</div>
             <input className={className('', {
               'inputError': errors.beneficiary
-            })} {...register("beneficiary", { required: true })} />
+            })} placeholder="e.g. Bill Billy" {...register("beneficiary", { required: true })} />
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ function TransactionForm({ onTransactionAdd }: Props) {
           <div className={className("transaction-form-description-text",  {
             'titleError': errors.description
           })}>Description</div>
-          <textarea className={className('', {
+          <textarea placeholder="e.g. Payment for invoice" className={className('', {
             'inputError': errors.description
           })} {...register("description", { required: true })} />
         </div>

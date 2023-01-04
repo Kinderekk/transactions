@@ -110,7 +110,7 @@
   }
 }
 
-@media only screen and (max-height: 900px) {
+@media only screen and (max-height: 900px) and (max-width: 950px) {
   .upper-items {
     flex-direction: column-reverse;
     height: 60% !important;
@@ -121,7 +121,7 @@
   }
 }
 
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 800px) and (max-width: 950px) {
   .upper-items {
     flex-direction: column-reverse;
     height: 70% !important;
