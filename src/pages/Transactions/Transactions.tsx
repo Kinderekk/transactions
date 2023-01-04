@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from '../components/Loader/Loader';
-import Error from '../components/Error/Error';
-import TransactionItem from '../components/TransactionItem/TransactionItem';
-import { addTransaction, getTransactions } from '../services/transactions';
-import { Transaction } from '../types/transaction';
-import Filter from '../components/Filter/Filter';
-import TransactionForm from '../components/TransactionForm/TransactionForm';
+import Loader from '../../components/Loader/Loader';
+import Error from '../../components/Error/Error';
+import TransactionItem from '../../components/TransactionItem/TransactionItem';
+import { addTransaction, getTransactions } from '../../services/transactions';
+import { Transaction } from '../../types/transaction';
+import Filter from '../../components/Filter/Filter';
+import TransactionForm from '../../components/TransactionForm/TransactionForm';
 import './Transactions.scss';
 
 function Transactions() {
